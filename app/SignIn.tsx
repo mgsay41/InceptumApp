@@ -22,7 +22,7 @@ const SignIn = () => {
     const result = await login();
 
     if (result) {
-      refetch({ key: "value" }); // Replace "key" and "value" with actual parameters as needed
+      refetch({});
     } else {
       Alert.alert("Error", "Failed to Login");
     }

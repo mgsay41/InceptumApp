@@ -59,10 +59,12 @@ export async function login() {
 
 export async function logout() {
   try {
+    console.log("Deleting current session...");
     await account.deleteSession("current");
+    console.log("Session deleted successfully.");
     return true;
   } catch (error) {
-    console.error(error);
+    console.error("Logout error:", error);
     return false;
   }
 }

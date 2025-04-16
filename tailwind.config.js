@@ -53,6 +53,7 @@ module.exports = {
           100: "#FF4C61", // Default error
           200: "#FF6B81", // Error dark
         },
+        danger: "#F75555",
       },
     },
   },
