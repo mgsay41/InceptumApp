@@ -34,6 +34,12 @@ module.exports = {
           200: "#F3F4F6", // Light mode background alternative
           300: "#1E293B", // Dark mode surface
         },
+        black: {
+          DEFAULT: "#000000",
+          100: "#8C8E98",
+          200: "#666876",
+          300: "#191D31",
+        },
         text: {
           100: "#1F2937", // Primary text
           200: "#6B7280", // Secondary text
