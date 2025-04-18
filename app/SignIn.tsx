@@ -36,14 +36,14 @@ const SignIn = () => {
           resizeMode="contain"
         />
         <View className="px-10">
-          <Text className="text-base text-center uppercase font-rubic text-black-200">
+          <Text className="text-base text-center uppercase font-rubik text-black-200">
             Welcome to Tariky
           </Text>
-          <Text className="text-3xl font-rubicBold text-black-300 text-center mt-2">
+          <Text className="text-3xl font-rubikBold text-black-300 text-center mt-2">
             let's Get You Closer to {"\n"}
             <Text className="text-primary-300">Your Dream</Text>
           </Text>
-          <Text className="text-lg font-rubic text-black-200 text-center mt-12">
+          <Text className="text-lg font-rubik text-black-200 text-center mt-12">
             Login to Tariky with Google
           </Text>
           <TouchableOpacity
@@ -56,7 +56,7 @@ const SignIn = () => {
                 className="w-5 h-5"
                 resizeMode="contain"
               />
-              <Text className="text-lg font-rubic text-black-300 ml-2">
+              <Text className="text-lg font-rubik text-black-300 ml-2">
                 Continue with Google
               </Text>
             </View>

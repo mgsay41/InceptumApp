@@ -23,8 +23,8 @@ const TabIcon = ({
     <Text
       className={`text-xs w-full text-center mt-1 ${
         focused
-          ? "text-primary-300 font-rubicMedium"
-          : "text-black-200 font-rubic"
+          ? "text-primary-300 font-rubikMedium"
+          : "text-black-200 font-rubik"
       }`}
     >
       {title}

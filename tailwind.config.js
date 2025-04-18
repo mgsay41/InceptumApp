@@ -6,12 +6,17 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        rubic: ["Rubic-Regular", "sans-serif"],
-        rubicBold: ["Rubic-Bold", "sans-serif"],
-        rubicLight: ["Rubic-Light", "sans-serif"],
-        rubicMedium: ["Rubic-Medium", "sans-serif"],
-        rubicSemiBold: ["Rubic-SemiBold", "sans-serif"],
-        rubicExtraBold: ["Rubic-ExtraBold", "sans-serif"],
+        rubikBold: ["rubik-Bold", "sans-serif"],
+        rubikLight: ["rubik-Light", "sans-serif"],
+        rubikMedium: ["rubik-Medium", "sans-serif"],
+        rubikSemiBold: ["rubik-SemiBold", "sans-serif"],
+        rubikExtraBold: ["rubik-ExtraBold", "sans-serif"],
+        rubik: ["Rubik-Regular", "sans-serif"],
+        "rubik-bold": ["Rubik-Bold", "sans-serif"],
+        "rubik-extrabold": ["Rubik-ExtraBold", "sans-serif"],
+        "rubik-medium": ["Rubik-Medium", "sans-serif"],
+        "rubik-semibold": ["Rubik-SemiBold", "sans-serif"],
+        "rubik-light": ["Rubik-Light", "sans-serif"],
       },
       colors: {
         primary: {

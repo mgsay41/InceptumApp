@@ -37,7 +37,7 @@ const SettingsItems = ({
     <View className="flex flex-row items-center gap-3">
       <Image source={icon} className="size-6" />
       <Text
-        className={`text-lg font-rubic font-medium text-black-300 ${textStyle}`}
+        className={`text-lg font-rubik font-medium text-black-300 ${textStyle}`}
       >
         {title}
       </Text>
@@ -69,7 +69,7 @@ const Profile = () => {
         contentContainerClassName="pb-32 px-7"
       >
         <View className="flex flex-row justify-between items-center mt-5">
-          <Text className="text-xl font-rubicBold font-extrabold  ">
+          <Text className="text-xl font-rubikBold font-extrabold  ">
             Profile
           </Text>
           <Image source={icons.bell} className="size-5" />
@@ -87,7 +87,7 @@ const Profile = () => {
                 className="size-9"
               />
             </TouchableOpacity>
-            <Text className="text-2xl font-rubicBold font-extrabold mt-2">
+            <Text className="text-2xl font-rubikBold font-extrabold mt-2">
               {user?.name}
             </Text>
           </View>
