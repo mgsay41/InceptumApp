@@ -1,4 +1,11 @@
-import { Client, Account, Avatars, OAuthProvider } from "react-native-appwrite";
+import {
+  Client,
+  Account,
+  Avatars,
+  OAuthProvider,
+  Databases,
+  Query,
+} from "react-native-appwrite";
 import * as Linking from "expo-linking";
 import { openAuthSessionAsync } from "expo-web-browser";
 
@@ -6,6 +13,10 @@ export const config = {
   platform: "com.inceptum.app",
   endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT,
   projectID: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
+  databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID,
+  studentCollectionId: process.env.EXPO_PUBLIC_APPWRITE_STUDENT_COLLECTION_ID,
+  courseCollectionId: process.env.EXPO_PUBLIC_APPWRITE_COURSES_COLLECTION_ID,
+  providerCollectionId: process.env.EXPO_PUBLIC_APPWRITE_PROVIDER_COLLECTION_ID,
 };
 
 export const client = new Client();
@@ -17,6 +28,7 @@ client
 
 export const account = new Account(client);
 export const avatar = new Avatars(client);
+export const database = new Databases(client);
 
 export async function login() {
   try {
@@ -79,6 +91,64 @@ export async function getCurrentUser() {
         avatar: userAvatar.toString(),
       };
     }
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export async function getFeaturedCourses() {
+  try {
+    const result = await database.listDocuments(
+      config.courseCollectionId!,
+      config.databaseId!,
+      [Query.orderAsc("createdAt"), Query.limit(5)]
+    );
+    return result.documents;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+export async function getCourses({
+  filter,
+  query,
+  limit,
+}: {
+  filter: string;
+  query: string;
+  limit?: number;
+}) {
+  try {
+    const buildQuery = [Query.orderDesc("createdAt")];
+
+    if (filter && filter !== "All") {
+      buildQuery.push(Query.equal("Category", filter));
+    }
+
+    if (query) {
+      buildQuery.push(
+        Query.or([
+          Query.search("Title", query),
+          Query.search("Type", query),
+          Query.search("Location", query),
+          Query.search("About", query),
+          Query.search("Category", query),
+        ])
+      );
+    }
+
+    if (limit) {
+      buildQuery.push(Query.limit(limit));
+    }
+
+    const result = await database.listDocuments(
+      config.courseCollectionId!,
+      config.databaseId!,
+      buildQuery
+    );
+    return result.documents;
   } catch (error) {
     console.error(error);
     return null;
