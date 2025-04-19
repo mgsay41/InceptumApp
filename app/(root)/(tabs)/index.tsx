@@ -3,7 +3,6 @@ import Filters from "@/components/Filters";
 import NoResults from "@/components/NoResults";
 import Search from "@/components/search";
 import icons from "@/constants/icons";
-import images from "@/constants/images";
 import { getCourses, getFeaturedCourses } from "@/lib/appwrite";
 import { useGlobalContext } from "@/lib/global-provider";
 import { useAppwrite } from "@/lib/useAppwrite";

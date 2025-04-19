@@ -156,3 +156,18 @@ export async function getCourses({
     return null;
   }
 }
+
+export async function getCourseById(id: string) {
+  try {
+    const result = await database.getDocument(
+      config.databaseId!,
+      config.courseCollectionId!,
+      id
+    );
+
+    return result;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
