@@ -100,10 +100,11 @@ export async function getCurrentUser() {
 export async function getFeaturedCourses() {
   try {
     const result = await database.listDocuments(
-      config.courseCollectionId!,
       config.databaseId!,
-      [Query.orderAsc("createdAt"), Query.limit(5)]
+      config.courseCollectionId!,
+      [Query.orderAsc("$createdAt"), Query.limit(5)]
     );
+
     return result.documents;
   } catch (error) {
     console.error(error);
@@ -121,7 +122,7 @@ export async function getCourses({
   limit?: number;
 }) {
   try {
-    const buildQuery = [Query.orderDesc("createdAt")];
+    const buildQuery = [Query.orderDesc("$createdAt")];
 
     if (filter && filter !== "All") {
       buildQuery.push(Query.equal("Category", filter));
@@ -144,10 +145,11 @@ export async function getCourses({
     }
 
     const result = await database.listDocuments(
-      config.courseCollectionId!,
       config.databaseId!,
+      config.courseCollectionId!,
       buildQuery
     );
+
     return result.documents;
   } catch (error) {
     console.error(error);

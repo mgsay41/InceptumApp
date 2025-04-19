@@ -1,14 +1,16 @@
 import { Card, FeaturedCard } from "@/components/Cards";
 import Filters from "@/components/Filters";
+import NoResults from "@/components/NoResults";
 import Search from "@/components/search";
 import icons from "@/constants/icons";
 import images from "@/constants/images";
 import { getCourses, getFeaturedCourses } from "@/lib/appwrite";
 import { useGlobalContext } from "@/lib/global-provider";
 import { useAppwrite } from "@/lib/useAppwrite";
-import { Link, useLocalSearchParams } from "expo-router";
+import { Link, router, useLocalSearchParams } from "expo-router";
 import { useEffect } from "react";
 import {
+  ActivityIndicator,
   FlatList,
   Image,
   ScrollView,
@@ -34,6 +36,8 @@ export default function Index() {
     skip: true,
   });
 
+  const handleCardPress = (id: string) => router.push(`/Courses/${id}`);
+
   useEffect(() => {
     refetch({ query: params.query!, filter: params.filter!, limit: 6 });
   }, [params.filter, params.query]);
@@ -41,13 +45,25 @@ export default function Index() {
   return (
     <SafeAreaView className="bg-white h-full">
       <FlatList
-        data={CoursesData}
-        renderItem={({ item }) => <Card />}
-        keyExtractor={(item) => item.toString()}
+        data={CoursesData || []}
+        renderItem={({ item }) => (
+          <Card item={item} onPress={() => handleCardPress(item.$id)} />
+        )}
+        keyExtractor={(item) => item.$id || String(Math.random())}
         numColumns={2}
         contentContainerClassName="pb-32"
         columnWrapperClassName="flex gap-5 px-5"
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent={
+          CoursesLoading ? (
+            <ActivityIndicator
+              size={"large"}
+              className="text-primary-300 mt-5"
+            />
+          ) : (
+            <NoResults />
+          )
+        }
         ListHeaderComponent={
           <View className="px-5">
             <View className="flex flex-row items-center justify-between mt-5">
@@ -79,15 +95,29 @@ export default function Index() {
                   </Text>
                 </TouchableOpacity>
               </View>
-              <FlatList
-                data={FeaturedCoursesData}
-                keyExtractor={(item) => item.toString()}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                bounces={false}
-                contentContainerClassName="flex gap-5 mt-5"
-                renderItem={({ item }) => <FeaturedCard />}
-              />
+              {FeaturedCoursesLoading ? (
+                <ActivityIndicator
+                  size={"large"}
+                  className="text-primary-300 mt-5"
+                />
+              ) : !FeaturedCoursesData || FeaturedCoursesData.length === 0 ? (
+                <NoResults />
+              ) : (
+                <FlatList
+                  data={FeaturedCoursesData || []}
+                  keyExtractor={(item) => item.$id || String(Math.random())}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  bounces={false}
+                  contentContainerClassName="flex gap-5 mt-5"
+                  renderItem={({ item }) => (
+                    <FeaturedCard
+                      item={item}
+                      onPress={() => handleCardPress(item.$id)}
+                    />
+                  )}
+                />
+              )}
             </View>
             <View className="flex flex-row items-center justify-between">
               <Text className="text-xl font-rubik font-bold text-black-300">

@@ -57,14 +57,11 @@ export const featuredCards = [
 
 export const categories = [
   { title: "All", category: "All" },
-  { title: "Houses", category: "House" },
-  { title: "Condos", category: "Condos" },
-  { title: "Duplexes", category: "Duplexes" },
-  { title: "Studios", category: "Studios" },
-  { title: "Villas", category: "Villa" },
-  { title: "Apartments", category: "Apartments" },
-  { title: "Townhouse", category: "Townhouse" },
-  { title: "Others", category: "Others" },
+  { title: "CyberSecurity", category: "CyberSecurity" },
+  { title: "IoT", category: "IoT" },
+  { title: "Software Development", category: "SoftwareDevelopment" },
+  { title: "Electronics", category: "Electronics" },
+  { title: "AI", category: "AI" },
 ];
 
 export const settings = [
